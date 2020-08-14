@@ -10,10 +10,10 @@ local apps = require('configuration.apps')
 local globalKeys =
   awful.util.table.join(
   -- Hotkeys
-  awful.key({modkey}, 'F1', hotkeys_popup.show_help, {description = 'show help', group = 'awesome'}),
+  awful.key({modkey}, 's', hotkeys_popup.show_help, {description = 'show help', group = 'awesome'}),
   -- Tag browsing
-  awful.key({modkey}, 'w', awful.tag.viewprev, {description = 'view previous', group = 'tag'}),
-  awful.key({modkey}, 's', awful.tag.viewnext, {description = 'view next', group = 'tag'}),
+  -- awful.key({modkey}, 'w', awful.tag.viewprev, {description = 'view previous', group = 'tag'}),
+  -- awful.key({modkey}, 's', awful.tag.viewnext, {description = 'view next', group = 'tag'}),
   awful.key({altkey, 'Control'}, 'Up', awful.tag.viewprev, {description = 'view previous', group = 'tag'}),
   awful.key({altkey, 'Control'}, 'Down', awful.tag.viewnext, {description = 'view next', group = 'tag'}),
   awful.key({modkey}, 'Escape', awful.tag.history.restore, {description = 'go back', group = 'tag'}),
@@ -75,7 +75,8 @@ local globalKeys =
     end,
     {description = 'Switch to previous window', group = 'client'}
   ),
-  -- Programms
+  -- Programs
+  -- Lock screen
   awful.key(
     {modkey},
     'l',
@@ -84,6 +85,7 @@ local globalKeys =
     end,
     {description = 'Lock the screen', group = 'awesome'}
   ),
+  -- Delayed screenshot
   awful.key(
     {modkey},
     'Print',
@@ -92,6 +94,7 @@ local globalKeys =
     end,
     {description = 'Mark an area and screenshot it 10 seconds later (clipboard)', group = 'screenshots (clipboard)'}
   ),
+  -- screenshot
   awful.key(
     {modkey},
     'p',
@@ -100,6 +103,7 @@ local globalKeys =
     end,
     {description = 'Take a screenshot of your active monitor and copy it to clipboard', group = 'screenshots (clipboard)'}
   ),
+  -- another screenshot
   awful.key(
     {altkey, 'Shift'},
     'p',
@@ -108,6 +112,7 @@ local globalKeys =
     end,
     {description = 'Mark an area and screenshot it to your clipboard', group = 'screenshots (clipboard)'}
   ),
+  -- Code/Text Editor
   awful.key(
     {modkey},
     'c',
@@ -116,6 +121,7 @@ local globalKeys =
     end,
     {description = 'open a text/code editor', group = 'launcher'}
   ),
+  -- Browser (Firefox/Brave)
   awful.key(
     {modkey},
     'b',
@@ -124,17 +130,31 @@ local globalKeys =
     end,
     {description = 'open a browser', group = 'launcher'}
   ),
-  -- Standard program
   awful.key(
     {modkey},
-    'x',
+    'm',
+    function()
+      awful.util.spawn(apps.default.music)
+    end,
+    {description = 'open music player', group = 'launcher'}
+  ),
+  -- Standard program
+  -- Terminal
+  awful.key(
+    {modkey},
+    'Return',
     function()
       awful.spawn(apps.default.terminal)
     end,
     {description = 'open a terminal', group = 'launcher'}
   ),
+  -- Reload Awesome
   awful.key({modkey, 'Control'}, 'r', _G.awesome.restart, {description = 'reload awesome', group = 'awesome'}),
+  -- Quit Awesome
   awful.key({modkey, 'Control'}, 'q', _G.awesome.quit, {description = 'quit awesome', group = 'awesome'}),
+  --
+  -- Layout Group
+  --
   awful.key(
     {altkey, 'Shift'},
     'Right',
@@ -215,6 +235,8 @@ local globalKeys =
     end,
     {description = 'select previous', group = 'layout'}
   ),
+
+
   awful.key(
     {modkey, 'Control'},
     'n',
@@ -258,6 +280,7 @@ local globalKeys =
     end,
     {description = 'show weather', group = 'widgets'}
   ),--]]
+
   -- Brightness
   awful.key(
     {},
@@ -325,6 +348,7 @@ local globalKeys =
     {description = 'toggle mute', group = 'hotkeys'}
   ),
   -- Screen management
+  -- Move window to other screen
   awful.key(
     {modkey},
     'o',

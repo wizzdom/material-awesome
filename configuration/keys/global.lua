@@ -85,32 +85,33 @@ local globalKeys =
     end,
     {description = 'Lock the screen', group = 'awesome'}
   ),
-  -- Delayed screenshot
+  -- Screenshot
+  -- 10 second delay screenshot
   awful.key(
-    {modkey},
+    {modkey, 'Control'},
     'Print',
     function()
       awful.util.spawn_with_shell(apps.default.delayed_screenshot)
     end,
-    {description = 'Mark an area and screenshot it 10 seconds later (clipboard)', group = 'screenshots (clipboard)'}
+    {description = 'Screenshot with a 10 second delay (Flameshot)', group = 'screenshots'}
   ),
-  -- screenshot
+  -- screenshot (Regular Screenshot)
   awful.key(
-    {modkey},
-    'p',
+    {},
+    'Print',
     function()
       awful.util.spawn_with_shell(apps.default.screenshot)
     end,
-    {description = 'Take a screenshot of your active monitor and copy it to clipboard', group = 'screenshots (clipboard)'}
+    {description = 'Take a screenshot of your active monitor (Flameshot)', group = 'screenshots'}
   ),
-  -- another screenshot
+  -- region screenshot
   awful.key(
-    {altkey, 'Shift'},
-    'p',
+    {'Control'},
+    'Print',
     function()
       awful.util.spawn_with_shell(apps.default.region_screenshot)
     end,
-    {description = 'Mark an area and screenshot it to your clipboard', group = 'screenshots (clipboard)'}
+    {description = 'Mark an area and screenshot it (Flameshot)', group = 'screenshots'}
   ),
   -- Code/Text Editor
   awful.key(
@@ -121,7 +122,7 @@ local globalKeys =
     end,
     {description = 'open a text/code editor', group = 'launcher'}
   ),
-  -- Browser (Firefox/Brave)
+  -- Default Browser (Firefox/Brave)
   awful.key(
     {modkey},
     'b',
@@ -366,13 +367,14 @@ local globalKeys =
     end,
     {description = 'toggle mute', group = 'hotkeys'}
   ),
+  -- Power button - Prompt power options
   awful.key(
     {},
     'XF86PowerOff',
     function()
       _G.exit_screen_show()
     end,
-    {description = 'toggle mute', group = 'hotkeys'}
+    {description = 'power options', group = 'hotkeys'}
   ),
   -- Screen management
   -- Move window to other screen
@@ -440,7 +442,7 @@ local globalKeys =
     function()
       awful.util.spawn(apps.default.files)
     end,
-    {description = 'filebrowser', group = 'hotkeys'}
+    {description = 'open file browser', group = 'launcher'}
   ),
   -- Emoji Picker
   awful.key(
@@ -449,7 +451,7 @@ local globalKeys =
     function()
       awful.util.spawn_with_shell('ibus emoji')
     end,
-    {description = 'Open the ibus emoji picker to copy an emoji to your clipboard', group = 'hotkeys'}
+    {description = 'Open ibus emoji picker to copy an emoji to your clipboard', group = 'hotkeys'}
   )
 )
 

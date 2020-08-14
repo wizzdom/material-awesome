@@ -130,6 +130,7 @@ local globalKeys =
     end,
     {description = 'open a browser', group = 'launcher'}
   ),
+  -- Default Music Player
   awful.key(
     {modkey},
     'm',
@@ -288,7 +289,7 @@ local globalKeys =
     function()
       awful.spawn('xbacklight -inc 10')
     end,
-    {description = '+10%', group = 'hotkeys'}
+    {description = 'Brightness +10%', group = 'hotkeys'}
   ),
   awful.key(
     {},
@@ -296,7 +297,7 @@ local globalKeys =
     function()
       awful.spawn('xbacklight -dec 10')
     end,
-    {description = '-10%', group = 'hotkeys'}
+    {description = 'Brightness -10%', group = 'hotkeys'}
   ),
   -- ALSA volume control
   awful.key(
@@ -307,6 +308,7 @@ local globalKeys =
     end,
     {description = 'volume up', group = 'hotkeys'}
   ),
+  -- Volume down
   awful.key(
     {},
     'XF86AudioLowerVolume',
@@ -315,6 +317,7 @@ local globalKeys =
     end,
     {description = 'volume down', group = 'hotkeys'}
   ),
+  -- Toggle Mute
   awful.key(
     {},
     'XF86AudioMute',
@@ -323,14 +326,38 @@ local globalKeys =
     end,
     {description = 'toggle mute', group = 'hotkeys'}
   ),
-  awful.key(
-    {},
-    'XF86AudioNext',
-    function()
-      --
-    end,
-    {description = 'toggle mute', group = 'hotkeys'}
+  -- Play/Pause 
+   awful.key({ },
+    "XF86AudioPlay",
+     function ()
+       awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause", false) 
+      end,
+    {description = 'Play/Pause media player', group = 'hotkeys'}
   ),
+  -- Next Track
+   awful.key({ },
+    "XF86AudioNext",
+     function ()
+       awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next", false)
+     end,
+     {description = 'Next Track', group = 'hotkeys'}
+    ),
+    -- Previous Track
+   awful.key({ },
+    "XF86AudioPrev",
+     function ()
+       awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous", false)
+     end,
+    {description = 'Previous Track', group = 'hotkeys'}
+    ),
+    -- Stop
+   awful.key({ },
+    "XF86AudioStop",
+     function ()
+       awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop", false)
+       end,
+      {description = 'Stop media player', group = 'hotkeys'}
+      ),
   awful.key(
     {},
     'XF86PowerDown',
@@ -370,6 +397,9 @@ local globalKeys =
     end,
     {description = 'open default program for tag/workspace', group = 'tag'}
   ),
+
+
+
   -- Custom hotkeys
   -- vfio integration
   awful.key(
@@ -388,13 +418,13 @@ local globalKeys =
     end
   ),
   -- System Monitor hotkey
-  awful.key(
-    {modkey},
-    'm',
-    function()
-      awful.util.spawn_with_shell('mate-system-monitor')
-    end
-  ),
+  -- awful.key(
+  --   {modkey},
+  --   'm',
+  --   function()
+  --     awful.util.spawn_with_shell('mate-system-monitor')
+  --   end
+  -- ),
   -- Kill VLC
   awful.key(
     {modkey},

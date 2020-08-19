@@ -20,7 +20,7 @@ return {
     editor_cmd = os.getenv('EDITOR') or 'vim',
     social = 'discord',
     game = 'steam',
-    files = 'nautilus',
+    files = 'pcmanfm',
     music = 'spotify' 
   },
   -- List of apps to start once on start-up
@@ -41,7 +41,7 @@ return {
     --  'synology-drive -minimized',
      'steam -silent',
     --  '/usr/bin/barrier', --not using barrier now but will be later
-     '/home/wizzdom/.local/bin/wallpaper', -- wallpaper-reddit script
+     '~/.local/bin/wallpaper', -- wallpaper-reddit script
     -- Add applications that need to be killed between reloads
     -- to avoid multipled instances, inside the awspawn script
     '~/.config/awesome/configuration/awspawn', -- Spawn "dirty" apps that can linger between sessions

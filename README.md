@@ -6,7 +6,7 @@
 
 ### This is a fork of [Chris Titus](https://github.com/ChrisTitusTech/material-awesome)'s material-awesome who forked it from [HikariKnight](https://github.com/HikariKnight/material-awesome)'s fork of the [original project](https://github.com/material-shell/material-awesome)
 
-### Note: This fork focuses on adding more documentation and comments, customising it to my workflow and making it more accessible
+### Note: This fork focuses on adding more documentation and comments, customising it to my workflow and small quality of life improvements
 
 An almost desktop environment made with [AwesomeWM](https://awesomewm.org/) following the [Material Design guidelines](https://material.io) with a performant opiniated mouse/keyboard workflow to increase daily productivity and comfort.
 
@@ -19,15 +19,18 @@ _[Click to view in high quality](https://www.reddit.com/r/unixporn/comments/anp5
 
 ## Installation
 
-### Note: the best transition is from gnome to material-awesome as KDE-plasma can break some indicators until plasma is purged entierly.
+### Note: the best transition is from gnome to material-awesome as KDE-plasma can break some indicators until plasma is purged entirely.
 
 ### 1) Get all the dependencies
-
+**Ubuntu/Debian**:
 ```
-sudo apt install awesome fonts-roboto rofi compton i3lock xclip qt5-style-plugins materia-gtk-theme lxappearance xbacklight kde-spectacle nautilus xfce4-power-manager pnmixer network-manager-applet -y
+sudo apt install awesome fonts-roboto rofi compton i3lock-fancy qt5-style-plugins materia-gtk-theme lxappearance xbacklight flameshot pcmanfm xfce4-power-manager pnmixer network-manager-applet nitrogen -y
 wget -qO- https://git.io/papirus-icon-theme-install | sh
 ```
-
+Arch:
+```
+yay -S --needed awesome ttf-roboto rofi picom i3lock qt5-styleplugins materia-gtk-theme lxappearance xbacklight flameshot pcmanfm xfce4-power-manager pnmixer network-manager-applet papirus-icon-theme gnome-keyring polkit-gnome nitrogen
+```
 #### Program list
 
 - [AwesomeWM](https://awesomewm.org/) as the window manager - universal package install: `awesome`
@@ -40,13 +43,14 @@ wget -qO- https://git.io/papirus-icon-theme-install | sh
 - [Materia](https://github.com/nana-4/materia-theme) as GTK theme - **Arch Install**: `materia-theme` **Debian**: `materia-gtk-theme`
 - [Papirus Dark](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) as icon theme
   - Arch: `papirus-icon-theme`in the AUR, or `yay -S --needed papirus-icon-theme`
-  - Universal Install: wget -qO- https://git.io/papirus-icon-theme-install | sh
+  - Universal Install: `wget -qO- https://git.io/papirus-icon-theme-install | sh`
 - [lxappearance](https://sourceforge.net/projects/lxde/files/LXAppearance/) to set up the gtk and icon theme
 - (Laptop) [xbacklight](https://www.x.org/archive/X11R7.5/doc/man/man1/xbacklight.1.html) for adjusting brightness on laptops (disabled by default)
 - [flameshot](https://flameshot.js.org/#/) a fantastic screenshot utility. **Install**: `flameshot`
 - [pnmixer](https://github.com/nicklan/pnmixer) Audio Tray icon that is in debian repositories and is easily installed on arch through AUR.
 - [network-manager-applet](https://gitlab.gnome.org/GNOME/network-manager-applet) `nm-applet` is a Network Manager Tray display from GNOME.
 - [xfce4-power-manager](https://docs.xfce.org/xfce/xfce4-power-manager/start) XFCE4's power manager is excellent and a great way of dealing with sleep, monitor timeout, and other power management features.
+- [Nitrogen](https://wiki.archlinux.org/index.php/Nitrogen) - wallpaper setter **universal install**: `nitrogen`
 
 ### 2) Clone the configuration
 
@@ -57,6 +61,7 @@ git clone https://github.com/wizzdom/material-awesome.git ~/.config/awesome
 ### 3) Set the themes
 
 Start `lxappearance` to active the **icon** theme and **GTK** theme
+Redo this, running `lxappearance` as root for applications that run as root e.g.`sudo lxappearance`
 Note: for cursor theme, edit `~/.icons/default/index.theme` and `~/.config/gtk3-0/settings.ini`, for the change to also show up in applications run as root, copy the 2 files over to their respective place in `/root`.
 
 ### 4) Same theme for Qt/KDE applications and GTK applications, and fix missing indicators
@@ -81,3 +86,7 @@ The project is split in functional directories and in each of them there is a re
 - [Module](./module) contain all the **features** available
 - [Theme](./theme) hold all the **aesthetic** aspects
 - [Widget](./widget) contain all the **widgets** available
+
+## TODO
+- create a short script that can  pull this all down and set it up with minimal user interaction
+- 

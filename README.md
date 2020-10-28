@@ -24,19 +24,21 @@ _[Click to view in high quality](https://www.reddit.com/r/unixporn/comments/anp5
 ### 1) Get all the dependencies
 **Ubuntu/Debian**:
 ```
-sudo apt install awesome fonts-roboto rofi compton i3lock-fancy qt5-style-plugins materia-gtk-theme lxappearance xbacklight flameshot pcmanfm xfce4-power-manager pnmixer network-manager-applet nitrogen -y
+sudo add-apt-repository ppa:regolith-linux/unstable
+sudo apt install awesome fonts-roboto rofi picom i3lock-fancy qt5-style-plugins materia-gtk-theme lxappearance xbacklight flameshot pcmanfm xfce4-power-manager pnmixer network-manager-applet nitrogen -y
 wget -qO- https://git.io/papirus-icon-theme-install | sh
 ```
 Arch:
 ```
-yay -S --needed awesome ttf-roboto rofi picom i3lock qt5-styleplugins materia-gtk-theme lxappearance xbacklight flameshot pcmanfm xfce4-power-manager pnmixer network-manager-applet papirus-icon-theme gnome-keyring polkit-gnome nitrogen
+yay -S --needed awesome ttf-roboto rofi picom i3lock qt5-styleplugins materia-gtk-theme lxappearance xbacklight flameshot pcmanfm xfce4-power-manager pnmixer network-manager-applet papirus-icon-theme gnome-keyring polkit-gnome nitrogen -y
 ```
 #### Program list
 
 - [AwesomeWM](https://awesomewm.org/) as the window manager - universal package install: `awesome`
 - [Roboto](https://fonts.google.com/specimen/Roboto) as the font - **Debian**: `fonts-roboto` **Arch**: `ttf-roboto`
 - [Rofi](https://github.com/DaveDavenport/rofi) for the app launcher - universal install: `rofi`
-- [Picom (formerly Compton)](https://github.com/yshui/picom) for the compositor (blur and animations) universal install: `picom`
+- [Picom (formerly Compton)](https://github.com/yshui/picom) for the compositor (blur and animations) universal install: `picom` 
+  - debian-based user will need this PPA:`sudo add-apt-repository ppa:regolith-linux/unstable`
 - [i3lock](https://github.com/meskarune/i3lock-fancy) the lockscreen application **Arch Install**: `i3lock` **Debian**: `i3lock-fancy`
 <!-- - [xclip](https://github.com/astrand/xclip) for copying screenshots to clipboard package: `xclip` -->
 - `gnome-keyring` and a policykit-agent (by default `policykit-1-gnome` is enabled) OR `mate-polkit`

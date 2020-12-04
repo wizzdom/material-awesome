@@ -131,9 +131,18 @@ local globalKeys =
     end,
     {description = 'open a browser', group = 'launcher'}
   ),
-  -- Default Music Player
-  awful.key(
+-- Mail application
+   awful.key(
     {modkey},
+    'm',
+    function()
+      awful.util.spawn('birdtray -t')
+    end,
+    {description = 'show/hide Thunderbird', group = 'launcher'}
+  ),
+ -- Default Music Player
+  awful.key(
+    {modkey, 'Shift'},
     'm',
     function()
       awful.util.spawn(apps.default.music)

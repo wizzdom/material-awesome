@@ -17,8 +17,9 @@ return {
     region_screenshot = 'flameshot gui -p ~/Pictures/screenshot/',
     delayed_screenshot = 'flameshot full -p ~/Pictures/screenshot -d 5000',
     browser = 'firefox', -- brave-browser-nightly
+    altbrowser = 'brave',
     editor = 'code', -- text editor
-    editor_cmd = os.getenv('EDITOR') or 'vim',
+    editor_cmd = os.getenv('EDITOR') or 'nvim',
     social = 'discord',
     game = 'steam',
     files = 'pcmanfm',
@@ -30,20 +31,19 @@ return {
     'nitrogen --restore',
     'nm-applet --indicator', -- wifi
     'pnmixer', -- shows an audiocontrol applet in systray when installed.
-    --'blueman-applet', -- Bluetooth tray icon
+    'blueman-applet', -- Bluetooth tray icon
     'ibus-daemon --xim', -- Ibus daemon for keyboard
     'scream -u -p 4011 -i virbr1', -- scream audio sink
     'numlockx on', -- enable numlock
-    '/usr/lib/polkit-1-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)', -- credential manager polkit
+    '/usr/lib/polkit-1-gnome/polkit-gnome-authentication-agent-1 ', -- credential manager(polkit)    (& eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg))
     'xfce4-power-manager', -- Power manager
     'flameshot', -- Flameshot screenshot utility
     'birdtray', --Birdtray - Thunderbird in tray
-    'kdeconnect-indicator'
+    'viper-gui -st', -- Launch viper and keep gui in tray
     -- 'steam -silent',
     -- '~/.local/bin/wallpaper', -- wallpaper-reddit script
     -- Add applications that need to be killed between reloads
     -- to avoid multipled instances, inside the awspawn script
     '~/.config/awesome/configuration/awspawn' -- Spawn "dirty" apps that can linger between sessions
-    -- 'viper-gui -st', -- Launch viper and keep gui in tray
   }
 }

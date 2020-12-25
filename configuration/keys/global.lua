@@ -122,16 +122,26 @@ local globalKeys =
     end,
     {description = 'open a text/code editor', group = 'launcher'}
   ),
-  -- Default Browser (Firefox/Brave)
+  -- Default Browser (Firefox)
   awful.key(
     {modkey},
     'b',
     function()
       awful.util.spawn(apps.default.browser)
     end,
-    {description = 'open a browser', group = 'launcher'}
+    {description = 'open default browser', group = 'launcher'}
   ),
--- Mail application
+  -- Alt Browser (Brave)
+  awful.key(
+    {modkey, 'Shift'},
+    'b',
+    function()
+      awful.util.spawn(apps.default.altbrowser)
+    end,
+    {description = 'open alt browser', group = 'launcher'}
+  ),
+
+-- Mail application (Thunderbird via Birdtray)
    awful.key(
     {modkey},
     'm',
@@ -336,11 +346,12 @@ local globalKeys =
     end,
     {description = 'toggle mute', group = 'hotkeys'}
   ),
+  -- MEDIA KEYS
   -- Play/Pause 
    awful.key({ },
     "XF86AudioPlay",
      function ()
-       awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause", false) 
+       awful.util.spawn("playerctl play-pause", false) -- old:(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause)
       end,
     {description = 'Play/Pause media player', group = 'hotkeys'}
   ),
@@ -348,7 +359,7 @@ local globalKeys =
    awful.key({ },
     "XF86AudioNext",
      function ()
-       awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next", false)
+       awful.util.spawn("playerctl next", false) -- old:(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next)
      end,
      {description = 'Next Track', group = 'hotkeys'}
     ),
@@ -356,7 +367,7 @@ local globalKeys =
    awful.key({ },
     "XF86AudioPrev",
      function ()
-       awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous", false)
+       awful.util.spawn("playerctl previous", false) -- old:(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous)
      end,
     {description = 'Previous Track', group = 'hotkeys'}
     ),
@@ -364,22 +375,56 @@ local globalKeys =
    awful.key({ },
     "XF86AudioStop",
      function ()
-       awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop", false)
+       awful.util.spawn("playerctl stop", false) -- old:(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop)
        end,
       {description = 'Stop media player', group = 'hotkeys'}
       ),
-  awful.key(
-    {},
-    'XF86PowerDown',
-    function()
-      --
-    end,
-    {description = 'toggle mute', group = 'hotkeys'}
+  -- More media keys - rebind useless keys on laptopto function as media keys
+  -- Play/Pause 
+   awful.key({ },
+    "XF86Tools",
+     function ()
+       awful.util.spawn("playerctl play-pause", false) -- old:(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause)
+      end,
+    {description = 'Play/Pause media player', group = 'hotkeys'}
   ),
+  -- Next Track
+   awful.key({ },
+    "XF86LaunchA",
+     function ()
+       awful.util.spawn("playerctl next", false) -- old:(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next)
+     end,
+     {description = 'Next Track', group = 'hotkeys'}
+    ),
+    -- Previous Track
+   awful.key({ },
+    "XF86Search",
+     function ()
+       awful.util.spawn("playerctl previous", false) -- old:(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous)
+     end,
+    {description = 'Previous Track', group = 'hotkeys'}
+    ),
+    -- Stop
+   awful.key({ },
+    "XF86Explorer",
+     function ()
+       awful.util.spawn("playerctl stop", false) -- old:(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop)
+       end,
+      {description = 'Stop media player', group = 'hotkeys'}
+      ),
+
   -- Power button - Prompt power options
   awful.key(
     {},
     'XF86PowerOff',
+    function()
+      _G.exit_screen_show()
+    end,
+    {description = 'power options', group = 'hotkeys'}
+  ),
+  awful.key(
+    {},
+    'XF86PowerDown',
     function()
       _G.exit_screen_show()
     end,

@@ -27,15 +27,16 @@ return {
   },
   -- List of apps to start once on start-up
   run_on_start_up = {
-    'picom',
+    'picom --experimental-backends',
     'nitrogen --restore',
+    'xbanish',
     'nm-applet --indicator', -- wifi
     'pnmixer', -- shows an audiocontrol applet in systray when installed.
     'blueman-applet', -- Bluetooth tray icon
     'ibus-daemon --xim', -- Ibus daemon for keyboard
     'scream -u -p 4011 -i virbr1', -- scream audio sink
     'numlockx on', -- enable numlock
-    '/usr/lib/polkit-1-gnome/polkit-gnome-authentication-agent-1 ', -- credential manager(polkit)    (& eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg))
+    '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 ', -- credential manager(polkit)    (& eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg))
     'xfce4-power-manager', -- Power manager
     'flameshot', -- Flameshot screenshot utility
     'birdtray', --Birdtray - Thunderbird in tray
